@@ -16,33 +16,81 @@
   <style>
     #visdown-output {max-width: 800px; margin: 0 auto;}
     #visdown-input {display: none;}
-  </style>  
+  </style>
 </head>
 <body>
 
-<div id="visdown-input">  
-  
-# Bar Plot
-  
+<div id="visdown-input">
+
+# may the chart be with you
+
 ```vis
-data: 
-  url: data/cars.csv
-mark: point
+data:
+  url: data/notes.csv
+mark: bar
 encoding:
-  x: 
-    field: kmpl
-    type: Q
-  y:   
-    field: price
+  x:
+    field: year
+    type: ordinal
+  y:
+    aggregate: mean
+    field: number
+    stack: center
+  color:
+    field: denom
+    type: nominal
+
+```
+
+```vis
+data:
+  url: data/notes.csv
+hconcat:
+- mark: bar
+  encoding:
+    x:
+      field: year
+      type: ordinal
+    y:
+      field: money
+      type: Q
+- mark: point
+  encoding:
+    x:
+      field: denom
+      type: ordinal
+    y:
+      field: number
+      type: Q
+    color:
+      value: red
+    opacity:
+      value: 0.3
+
+```
+```vis
+height: 400
+data:
+  url: data/notes.csv
+mark: circle
+encoding:
+  x:
+    field: year
+    type: ordinal
+  y:
+    field: money
     type: Q
   color:
-    field: type
-    type: N
+    field: value
+    type: ordinal
   size:
-    field: bhp
-    type: Q
+    value: 50
 ```
-    
+
+
+
+
+
 </div>
 <div id="visdown-output"></div>
 <script src="visdown.js"></script>
